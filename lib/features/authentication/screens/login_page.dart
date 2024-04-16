@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../Forms/utils.dart';
 
 class Login_Page extends StatelessWidget {
+  const Login_Page({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
@@ -12,7 +14,7 @@ class Login_Page extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xfff5ebe2),
         ),
         child: Column(
@@ -61,7 +63,7 @@ class Login_Page extends StatelessWidget {
                                   fontSize: 20 * ffem,
                                   fontWeight: FontWeight.w600,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -72,11 +74,11 @@ class Login_Page extends StatelessWidget {
                                   16 * fem, 13 * fem, 16 * fem, 12 * fem),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0xffc5bbbb),
+                                color: const Color(0xffc5bbbb),
                                 borderRadius: BorderRadius.circular(15 * fem),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x3f000000),
+                                    color: const Color(0x3f000000),
                                     offset: Offset(0 * fem, 4 * fem),
                                     blurRadius: 2 * fem,
                                   ),
@@ -89,7 +91,7 @@ class Login_Page extends StatelessWidget {
                                   fontSize: 18 * ffem, // Increase the font size
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff7e7272),
+                                  color: const Color(0xff7e7272),
                                 ),
                               ),
                             ),
@@ -103,7 +105,7 @@ class Login_Page extends StatelessWidget {
                                   fontSize: 20 * ffem,
                                   fontWeight: FontWeight.w600,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
+                                  color: const Color(0xff000000),
                                 ),
                               ),
                             ),
@@ -112,11 +114,11 @@ class Login_Page extends StatelessWidget {
                                   16 * fem, 13 * fem, 16 * fem, 12 * fem),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Color(0xffc5bbbb),
+                                color: const Color(0xffc5bbbb),
                                 borderRadius: BorderRadius.circular(15 * fem),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x3f000000),
+                                    color: const Color(0x3f000000),
                                     offset: Offset(0 * fem, 4 * fem),
                                     blurRadius: 2 * fem,
                                   ),
@@ -129,7 +131,7 @@ class Login_Page extends StatelessWidget {
                                   fontSize: 18 * ffem, // Increase the font size
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
-                                  color: Color(0xff7e7272),
+                                  color: const Color(0xff7e7272),
                                 ),
                               ),
                             ),
@@ -166,7 +168,7 @@ class Login_Page extends StatelessWidget {
                               fontSize: 22 * ffem,
                               fontWeight: FontWeight.w300,
                               height: 1.5 * ffem / fem,
-                              color: Color(0xff000000),
+                              color: const Color(0xff000000),
                             ),
                           ),
                         ),
@@ -183,11 +185,11 @@ class Login_Page extends StatelessWidget {
               width: double.infinity,
               height: 60 * fem,
               decoration: BoxDecoration(
-                color: Color(0xff152238),
+                color: const Color(0xff152238),
                 borderRadius: BorderRadius.circular(10 * fem),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0x3f000000),
+                    color: const Color(0x3f000000),
                     offset: Offset(0 * fem, 4 * fem),
                     blurRadius: 2 * fem,
                   ),
@@ -201,7 +203,7 @@ class Login_Page extends StatelessWidget {
                     fontSize: 24 * ffem,
                     fontWeight: FontWeight.w600,
                     height: 1.5 * ffem / fem,
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                   ),
                 ),
               ),

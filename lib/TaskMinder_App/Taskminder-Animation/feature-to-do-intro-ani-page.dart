@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Scene extends StatelessWidget {
+  const Scene({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // featuretodointroanipageG29 (29:2)
         padding: EdgeInsets.fromLTRB(21 * fem, 195 * fem, 21 * fem, 179 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xfff5ebe2),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               // youngmanwithlaptopcomputerwork (43:2)
               width: 388 * fem,
               height: 371 * fem,
@@ -38,7 +40,7 @@ class Scene extends StatelessWidget {
                   fontSize: 32 * ffem,
                   fontWeight: FontWeight.w700,
                   height: 1.5 * ffem / fem,
-                  color: Color(0xffeb2157),
+                  color: const Color(0xffeb2157),
                 ),
               ),
             ),
@@ -52,7 +54,7 @@ class Scene extends StatelessWidget {
                   fontSize: 15 * ffem,
                   fontWeight: FontWeight.w500,
                   height: 1.5 * ffem / fem,
-                  color: Color(0xff3f405b),
+                  color: const Color(0xff3f405b),
                 ),
               ),
             ),
@@ -62,11 +64,11 @@ class Scene extends StatelessWidget {
               width: double.infinity,
               height: 50 * fem,
               decoration: BoxDecoration(
-                color: Color(0xff3f405b),
+                color: const Color(0xff3f405b),
                 borderRadius: BorderRadius.circular(15 * fem),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0x3f000000),
+                    color: const Color(0x3f000000),
                     offset: Offset(0 * fem, 4 * fem),
                     blurRadius: 2 * fem,
                   ),
@@ -89,7 +91,7 @@ class Scene extends StatelessWidget {
                             fontSize: 20 * ffem,
                             fontWeight: FontWeight.w500,
                             height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
+                            color: const Color(0xffffffff),
                           ),
                         ),
                       ),
@@ -110,7 +112,7 @@ class Scene extends StatelessWidget {
                             fontSize: 20 * ffem,
                             fontWeight: FontWeight.w500,
                             height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
+                            color: const Color(0xffffffff),
                           ),
                         ),
                       ),

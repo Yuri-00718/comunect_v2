@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class MealsListView extends StatefulWidget {
   const MealsListView(
-      {Key? key, this.mainScreenAnimationController, this.mainScreenAnimation})
-      : super(key: key);
+      {super.key, this.mainScreenAnimationController, this.mainScreenAnimation});
 
   final AnimationController? mainScreenAnimationController;
   final Animation<double>? mainScreenAnimation;
@@ -48,7 +47,7 @@ class _MealsListViewState extends State<MealsListView>
           child: Transform(
             transform: Matrix4.translationValues(
                 0.0, 30 * (1.0 - widget.mainScreenAnimation!.value), 0.0),
-            child: Container(
+            child: SizedBox(
               height: 216,
               width: double.infinity,
               child: ListView.builder(
@@ -84,8 +83,7 @@ class _MealsListViewState extends State<MealsListView>
 
 class MealsView extends StatelessWidget {
   const MealsView(
-      {Key? key, this.mealsListData, this.animationController, this.animation})
-      : super(key: key);
+      {super.key, this.mealsListData, this.animationController, this.animation});
 
   final MealsListData? mealsListData;
   final AnimationController? animationController;
@@ -142,7 +140,7 @@ class MealsView extends StatelessWidget {
                             Text(
                               mealsListData!.titleTxt,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: FitnessAppTheme.fontName,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -160,7 +158,7 @@ class MealsView extends StatelessWidget {
                                   children: <Widget>[
                                     Text(
                                       mealsListData!.meals!.join('\n'),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontFamily: FitnessAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 10,
@@ -180,7 +178,7 @@ class MealsView extends StatelessWidget {
                                       Text(
                                         mealsListData!.kacl.toString(),
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontFamily: FitnessAppTheme.fontName,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 24,
@@ -188,8 +186,8 @@ class MealsView extends StatelessWidget {
                                           color: FitnessAppTheme.white,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 4, bottom: 3),
                                         child: Text(
                                           'kcal',
@@ -213,7 +211,7 @@ class MealsView extends StatelessWidget {
                                         BoxShadow(
                                             color: FitnessAppTheme.nearlyBlack
                                                 .withOpacity(0.4),
-                                            offset: Offset(8.0, 8.0),
+                                            offset: const Offset(8.0, 8.0),
                                             blurRadius: 8.0),
                                       ],
                                     ),

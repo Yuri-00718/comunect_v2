@@ -24,8 +24,12 @@ class _SplashLoadingScreenState extends State<SplashLoadingScreen> {
   void redirectUserToSplashScreenOrDashboard() async {
 
     _userCubit.stream.listen((UserState state) {
-      if (state is UserNotLoggedIn) {
+      if (state is! AuthenticatedUser) {
         Navigator.pushNamedAndRemoveUntil(context, splash, (route) => false);
+      }
+
+      if (state is AuthenticatedUser) {
+        Navigator.pushNamedAndRemoveUntil(context, homeScreen, (route) => false);
       }
     });
   }
@@ -34,7 +38,7 @@ class _SplashLoadingScreenState extends State<SplashLoadingScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Center(child: Text('Loading'),),
+      child: const Center(child: Text('Loading'),),
     );
   }
 }

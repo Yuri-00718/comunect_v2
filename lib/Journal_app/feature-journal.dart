@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class JournalAppHomeScreen extends StatefulWidget {
+  const JournalAppHomeScreen({super.key});
+
   @override
   _JournalAppHomeScreenState createState() => _JournalAppHomeScreenState();
 }
@@ -20,14 +22,14 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xfff5ebe2),
+        backgroundColor: const Color(0xfff5ebe2),
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xfff5ebe2),
         ),
         child: Stack(
@@ -51,10 +53,10 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
                             style: TextStyle(
                               fontSize: 34 * ffem,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xff585A79),
+                              color: const Color(0xff585A79),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: 150,
                             height: 90,
                             child: Image.asset(
@@ -157,16 +159,16 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
       child: Container(
         width: 380 * fem,
         height: 500 * fem,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Color(0xffFEE3D2),
+          color: const Color(0xffFEE3D2),
           borderRadius: BorderRadius.circular(40),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ],
         ),
@@ -175,19 +177,19 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
           children: [
             Text(
               'Journal Entry for ${entry?.date ?? ""}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Text(
               entry?.entry ?? "",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18, // Adjust the font size as needed
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),
@@ -208,14 +210,14 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
           title: Text("Journal Entry for ${DateFormat.yMMMMd().format(day!)}"),
           content: Column(
             children: [
-              Text("Select Emoji for Emotion:"),
-              SizedBox(height: 10),
+              const Text("Select Emoji for Emotion:"),
+              const SizedBox(height: 10),
               _buildEmojiPicker(),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextField(
                 controller: noteController,
                 maxLines: 3,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Write your journal entry here...",
                 ),
               ),
@@ -229,7 +231,7 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
                 });
                 Navigator.pop(context);
               },
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
             ),
             TextButton(
               onPressed: () {
@@ -237,7 +239,7 @@ class _JournalAppHomeScreenState extends State<JournalAppHomeScreen> {
                 noteController.clear();
                 Navigator.pop(context);
               },
-              child: Text("Save"),
+              child: const Text("Save"),
             ),
           ],
         );
@@ -299,14 +301,14 @@ class JournalEntry {
 class DateDisplay extends StatelessWidget {
   final DateTime? selectedDate;
 
-  DateDisplay({required this.selectedDate});
+  const DateDisplay({super.key, required this.selectedDate});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${DateFormat.MMMM().format(selectedDate!)}',
+      DateFormat.MMMM().format(selectedDate!),
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 34,
         fontWeight: FontWeight.w700,
         color: Color(0xff585A79),

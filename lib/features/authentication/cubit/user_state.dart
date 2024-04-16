@@ -12,3 +12,17 @@ final class AuthenticatedUser extends UserState {
 
   AuthenticatedUser({required this.user});
 }
+
+final class UserCredentialsNotValid extends UserState {
+  final bool passwordIsWeak;
+  final bool emailAlreadyExists;
+  final bool invalidEmail;
+
+  UserCredentialsNotValid({
+    required this.passwordIsWeak,
+    required this.emailAlreadyExists,
+    required this.invalidEmail,
+  }); 
+}
+
+final class UserIsCreated extends UserState {}

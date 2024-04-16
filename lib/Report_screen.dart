@@ -2,6 +2,8 @@ import 'package:comunect_v2/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ReportScreen extends StatefulWidget {
+  const ReportScreen({super.key});
+
   @override
   _ReportScreenState createState() => _ReportScreenState();
 }
@@ -133,13 +135,13 @@ class _ReportScreenState extends State<ReportScreen> {
               child: TextField(
                 maxLines: null,
                 onChanged: (String txt) {},
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: AppTheme.fontName,
                   fontSize: 16,
                   color: AppTheme.dark_grey,
                 ),
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: InputBorder.none, hintText: 'Enter your Report...'),
               ),
             ),

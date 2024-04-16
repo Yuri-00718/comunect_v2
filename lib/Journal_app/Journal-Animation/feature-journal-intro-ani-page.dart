@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 class Scene extends StatelessWidget {
+  const Scene({super.key});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         // featurejournalintroanipageynM (24:93)
         padding: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 190 * fem),
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xfff5ebe2),
         ),
         child: Column(
@@ -56,7 +58,7 @@ class Scene extends StatelessWidget {
                             fontSize: 32 * ffem,
                             fontWeight: FontWeight.w400,
                             height: 1.5 * ffem / fem,
-                            color: Color(0xff585a79),
+                            color: const Color(0xff585a79),
                           ),
                         ),
                       ),
@@ -78,7 +80,7 @@ class Scene extends StatelessWidget {
                             fontSize: 15 * ffem,
                             fontWeight: FontWeight.w400,
                             height: 1.5 * ffem / fem,
-                            color: Color(0xff3f405b),
+                            color: const Color(0xff3f405b),
                           ),
                         ),
                       ),
@@ -108,11 +110,11 @@ class Scene extends StatelessWidget {
               width: double.infinity,
               height: 50 * fem,
               decoration: BoxDecoration(
-                color: Color(0xff3f405b),
+                color: const Color(0xff3f405b),
                 borderRadius: BorderRadius.circular(15 * fem),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0x3f000000),
+                    color: const Color(0x3f000000),
                     offset: Offset(0 * fem, 4 * fem),
                     blurRadius: 2 * fem,
                   ),
@@ -126,7 +128,7 @@ class Scene extends StatelessWidget {
                     fontSize: 20 * ffem,
                     fontWeight: FontWeight.w500,
                     height: 1.5 * ffem / fem,
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                   ),
                 ),
               ),

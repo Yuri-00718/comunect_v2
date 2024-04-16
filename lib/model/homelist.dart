@@ -15,15 +15,15 @@ class HomeList {
   static List<HomeList> homeList = [
     HomeList(
       imagePath: 'assets/Home-list-image/Journal-bg.png',
-      navigateScreen: JournalAppHomeScreen(),
+      navigateScreen: const JournalAppHomeScreen(),
     ),
     HomeList(
       imagePath: 'assets/Home-list-image/Fitness-bg.png',
-      navigateScreen: FitnessAppHomeScreen(),
+      navigateScreen: const FitnessAppHomeScreen(),
     ),
     HomeList(
       imagePath: 'assets/Home-list-image/TaskMinder-bg.png',
-      navigateScreen: TaskminderAppHomeScreen(),
+      navigateScreen: const TaskminderAppHomeScreen(),
     ),
   ];
 }

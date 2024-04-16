@@ -1,4 +1,3 @@
-import 'package:comunect_v2/features/authentication/screens/noted-sign-in-page.dart';
 import 'package:comunect_v2/features/splash/screens/care_view.dart';
 import 'package:comunect_v2/features/splash/screens/center_next_button.dart';
 import 'package:comunect_v2/features/splash/screens/mood_diary_vew.dart';
@@ -10,7 +9,7 @@ import 'package:comunect_v2/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 
 class IntroductionAnimationScreen extends StatefulWidget {
-  const IntroductionAnimationScreen({Key? key}) : super(key: key);
+  const IntroductionAnimationScreen({super.key});
 
   @override
   _IntroductionAnimationScreenState createState() =>
@@ -24,7 +23,7 @@ class _IntroductionAnimationScreenState
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 8));
+        AnimationController(vsync: this, duration: const Duration(seconds: 8));
     _animationController?.animateTo(0.0);
     super.initState();
   }
@@ -38,7 +37,7 @@ class _IntroductionAnimationScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF7EBE1),
+      backgroundColor: const Color(0xffF7EBE1),
       body: ClipRect(
         child: Stack(
           children: [
@@ -74,7 +73,7 @@ class _IntroductionAnimationScreenState
 
   void _onSkipClick() {
     _animationController?.animateTo(0.8,
-        duration: Duration(milliseconds: 1200));
+        duration: const Duration(milliseconds: 1200));
   }
 
   void _onBackClick() {

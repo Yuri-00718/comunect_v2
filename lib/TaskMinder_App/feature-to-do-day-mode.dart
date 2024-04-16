@@ -15,6 +15,8 @@ class Task {
 }
 
 class TaskminderAppHomeScreen extends StatefulWidget {
+  const TaskminderAppHomeScreen({super.key});
+
   @override
   _TaskminderAppHomeScreenState createState() =>
       _TaskminderAppHomeScreenState();
@@ -35,7 +37,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffffffff),
         ),
         child: Column(
@@ -67,10 +69,10 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                       fontFamily: 'Poppins',
                       fontSize: 32 * ffem,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xffeb2157),
+                      color: const Color(0xffeb2157),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 97 * fem,
                     height: 42 * fem,
                     child: Stack(
@@ -80,7 +82,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                           height: 29 * fem,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(35 * fem),
-                            color: Color(0xffffa131),
+                            color: const Color(0xffffa131),
                           ),
                         ),
                         Positioned(
@@ -91,7 +93,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                             style: TextStyle(
                               fontSize: 10 * ffem,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                             ),
                           ),
                         ),
@@ -117,7 +119,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
               padding: EdgeInsets.fromLTRB(12 * fem, 2 * fem, 0 * fem, 2 * fem),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Color(0xffcdcdcd),
+                color: const Color(0xffcdcdcd),
                 borderRadius: BorderRadius.circular(20 * fem),
               ),
               child: Row(
@@ -129,16 +131,16 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                         hintText: 'Search your notes',
                         hintStyle: TextStyle(
                           fontSize: 16 * ffem,
-                          color: Color(0xff5a5a5a),
+                          color: const Color(0xff5a5a5a),
                         ),
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 49 * fem,
                     height: 46 * fem,
                     child: IconButton(
-                      icon: Icon(Icons.search),
+                      icon: const Icon(Icons.search),
                       onPressed: () {
                         // Handle search functionality here
                         print('Search button pressed!');
@@ -195,7 +197,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                   color: Colors.grey.withOpacity(0.3),
                   spreadRadius: 1,
                   blurRadius: 3,
-                  offset: Offset(0, 2),
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
@@ -223,25 +225,25 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                     ),
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 40,
                           height: 40,
                           child: GestureDetector(
                             onDoubleTap: () {
                               _showDropdownMenu(task);
                             },
-                            child: Icon(Icons.arrow_drop_down, size: 30),
+                            child: const Icon(Icons.arrow_drop_down, size: 30),
                           ),
                         ),
-                        SizedBox(width: 10),
-                        Container(
+                        const SizedBox(width: 10),
+                        SizedBox(
                           width: 40,
                           height: 40,
                           child: GestureDetector(
                             onTap: () {
                               _selectTime(task);
                             },
-                            child: Icon(Icons.access_time),
+                            child: const Icon(Icons.access_time),
                           ),
                         ),
                       ],
@@ -268,7 +270,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                             fontSize: 20 * ffem, // Adjust the font size here
                             color: Colors.black,
                           ),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
@@ -286,7 +288,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                   onPressed: () {
                     _completeTask(task);
                   },
-                  child: Text('Task Complete'),
+                  child: const Text('Task Complete'),
                 ),
               ],
             ),
@@ -323,12 +325,12 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
             height: 40,
             // Add any other properties as needed
           ),
-          SizedBox(width: 4.0),
+          const SizedBox(width: 4.0),
           Text(
             hours > 0
                 ? '$hours ${hours == 1 ? 'hour' : 'hours'} left'
                 : '$minutes ${minutes == 1 ? 'minute' : 'minutes'} left',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16.0,
               color: Colors.black,
             ),
@@ -361,7 +363,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 200.0, // Adjust the height as needed
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -384,7 +386,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
         _handleDropdownSelection(choice.toLowerCase(), task);
       },
       child: Container(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: Text(choice),
       ),
     );
@@ -409,13 +411,13 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add New Task'),
+          title: const Text('Add New Task'),
           content: Column(
             children: [
-              Text('YOUR TASK'), // Set the title to "Your Task"
+              const Text('YOUR TASK'), // Set the title to "Your Task"
               TextField(
                 controller: descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
               ),
             ],
           ),
@@ -424,7 +426,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -438,7 +440,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                   setState(() {});
                 }
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -451,16 +453,16 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit Task'),
+          title: const Text('Edit Task'),
           content: Column(
             children: [
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title'),
               ),
               TextField(
                 controller: descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
               ),
             ],
           ),
@@ -469,7 +471,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -478,7 +480,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
                 Navigator.of(context).pop();
                 setState(() {});
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -500,16 +502,16 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Change Task Color'),
+          title: const Text('Change Task Color'),
           content: SingleChildScrollView(
             child: Column(
               children: [
-                _buildColorOption(task, Color(0xFFE7EE)),
-                _buildColorOption(task, Color(0xFFF18A6B)),
-                _buildColorOption(task, Color(0xFFFFD55D)),
-                _buildColorOption(task, Color(0xFFCBD5F6)),
-                _buildColorOption(task, Color(0xFF9BCAD3)),
-                _buildColorOption(task, Color(0xFFD00000)),
+                _buildColorOption(task, const Color(0x00ffe7ee)),
+                _buildColorOption(task, const Color(0xFFF18A6B)),
+                _buildColorOption(task, const Color(0xFFFFD55D)),
+                _buildColorOption(task, const Color(0xFFCBD5F6)),
+                _buildColorOption(task, const Color(0xFF9BCAD3)),
+                _buildColorOption(task, const Color(0xFFD00000)),
               ],
             ),
           ),
@@ -528,7 +530,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
       child: Container(
         height: 40.0,
         width: 40.0,
-        margin: EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(20.0),
@@ -539,7 +541,7 @@ class _TaskminderAppHomeScreenState extends State<TaskminderAppHomeScreen> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: TaskminderAppHomeScreen(),
   ));
 }
