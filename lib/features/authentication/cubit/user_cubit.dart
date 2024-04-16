@@ -28,7 +28,7 @@ class UserCubit extends Cubit<UserState> {
         password: password,
       );
       await credential.user!.updateDisplayName(username);
-
+      await auth.signOut();
       emit(UserIsCreated());
     } on FirebaseAuthException catch (e) {
       bool passwordIsWeak = false;
@@ -54,5 +54,10 @@ class UserCubit extends Cubit<UserState> {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> signOutUser() async {
+    await auth.signOut();
+    emit(UserNotLoggedIn());
   }
 }

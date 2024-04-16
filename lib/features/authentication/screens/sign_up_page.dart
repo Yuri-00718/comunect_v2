@@ -460,6 +460,10 @@ class _SignupState extends State<Signup> {
   }
 
   void signupUser() async {
+    bool isValid = _signupFormKey.currentState!.validate();
+
+    if (!isValid) { return; }
+
     await _userCubit.createNewUser(
       _emailController.text,
       _passwordController.text,

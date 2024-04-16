@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:comunect_v2/app_theme.dart';
+import 'package:comunect_v2/features/authentication/cubit/user_cubit.dart';
 import 'package:comunect_v2/firebase_options.dart';
 import 'package:comunect_v2/routes/routes.dart';
 import 'package:comunect_v2/routes/routes_names.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,10 +17,15 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  var userCubit = UserCubit();
+
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown
-  ]).then((_) => runApp(const MyApp()));
+  ]).then((_) => runApp(BlocProvider.value(
+        value: userCubit,
+        child: const MyApp(),
+      )));
 }
 
 class MyApp extends StatelessWidget {

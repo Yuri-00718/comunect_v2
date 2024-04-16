@@ -1,6 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:comunect_v2/app_theme.dart';
+import 'package:comunect_v2/features/authentication/cubit/user_cubit.dart';
+import 'package:comunect_v2/routes/routes_names.dart';
 import 'package:flutter/material.dart';
-import 'model/homelist.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../model/homelist.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -13,12 +18,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   List<HomeList> homeList = HomeList.homeList;
   AnimationController? animationController;
   bool multiple = true;
+  late UserCubit _userCubit;
 
   @override
   void initState() {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
+    _userCubit = context.read<UserCubit>();
   }
 
   Future<bool> getData() async {
@@ -39,6 +46,17 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor:
           isLightMode == true ? AppTheme.white : AppTheme.nearlyBlack,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await _userCubit.signOutUser();
+          Navigator.pushNamedAndRemoveUntil(
+            context, 
+            signin, 
+            (route) => false
+          );
+        },
+        child: const Icon(Icons.logout),
+      ),
       body: FutureBuilder<bool>(
         future: getData(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
