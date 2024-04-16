@@ -8,6 +8,7 @@ class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserLoading());
   static final auth = FirebaseAuth.instance;
 
+
   Future<void> checkUserAuthenticationStatus() async {
     auth
       .authStateChanges()
@@ -20,6 +21,7 @@ class UserCubit extends Cubit<UserState> {
         emit(AuthenticatedUser(user: user));
       });
   }
+
 
   Future<void> createNewUser(String email, String password, String username) async {
     try {
@@ -56,8 +58,21 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+
   Future<void> signOutUser() async {
     await auth.signOut();
     emit(UserNotLoggedIn());
+  }
+
+  Future<void> signinUser(String email, String password) async {
+    try {
+    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password
+    );
+    emit(AuthenticatedUser(user: credential.user as User));
+  } on FirebaseAuthException catch (_) {
+    emit(IncorrectUserCredential());
+  }
   }
 }

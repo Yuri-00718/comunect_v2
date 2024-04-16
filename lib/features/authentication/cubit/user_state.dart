@@ -26,3 +26,5 @@ final class UserCredentialsNotValid extends UserState {
 }
 
 final class UserIsCreated extends UserState {}
+
+final class IncorrectUserCredential extends UserState {}
