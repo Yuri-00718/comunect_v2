@@ -38,7 +38,7 @@ class _SplashLoadingScreenState extends State<SplashLoadingScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: const Center(child: Text('Loading'),),
+      child: const Center(child: CircularProgressIndicator(),),
     );
   }
 }

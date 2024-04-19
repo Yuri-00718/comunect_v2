@@ -66,13 +66,13 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> signinUser(String email, String password) async {
     try {
-    final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password
-    );
-    emit(AuthenticatedUser(user: credential.user as User));
-  } on FirebaseAuthException catch (_) {
-    emit(IncorrectUserCredential());
-  }
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password
+      );
+      emit(AuthenticatedUser(user: credential.user as User));
+    } on FirebaseAuthException catch (_) {
+      emit(IncorrectUserCredential());
+    }
   }
 }

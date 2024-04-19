@@ -32,6 +32,9 @@ class _Login_PageState extends State<Login_Page> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
+    _emailController.text = 'jhbeltran2001@gmail.com';
+    _passwordController.text = 'jh09124225209';
+
     return Scaffold(
       body: Container(
         width: double.infinity,
