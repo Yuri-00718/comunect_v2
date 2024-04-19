@@ -57,6 +57,27 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         },
         child: const Icon(Icons.logout),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Services'
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Locals'
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/images/job_seeker.png'),
+            label: 'Locals'
+          )
+        ],
+        onTap: (value) {
+          if (value == 0) { 
+
+          }
+        },
+      ),
       body: FutureBuilder<bool>(
         future: getData(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
