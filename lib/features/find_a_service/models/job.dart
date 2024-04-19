@@ -10,14 +10,16 @@ class Job extends Timestamp {
   String location;
   List<String> photosUrl;
   String postedBy;
+  String serviceType;
 
   Job({
     super.id,
     required this.description,
     this.photos=const [],
     required this.location,
-    this.photosUrl=const [],
     required this.postedBy,
+    required this.serviceType,
+    this.photosUrl=const [],
   });
 
   Map<String, dynamic> toMap({bool isSavedInDatabase=false}) {
@@ -26,7 +28,8 @@ class Job extends Timestamp {
         'description': description,
         'location': location,
         'photosUrl': jsonEncode(photosUrl),
-        'postedBy': postedBy
+        'postedBy': postedBy,
+        'serviceType': serviceType
       };
     }
     
@@ -36,7 +39,8 @@ class Job extends Timestamp {
       'photos': photos.map((e) => e.path),
       'location': location,
       'photosUrl': jsonEncode(photosUrl),
-      'postedBy': postedBy
+      'postedBy': postedBy,
+      'serviceType': serviceType
     };
   }
 
@@ -45,6 +49,7 @@ class Job extends Timestamp {
     List<String> conList  = list.map((e) => e.toString(),).toList();
 
     return Job(
+      serviceType: map['serviceType'] as String,
       description: map['description'] as String,
       photos: map['photos'] ?? [],
       location: map['location'] as String,

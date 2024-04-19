@@ -10,6 +10,7 @@ class JobRepository {
   static const fieldUrl = 'photosUrl';
   static const fieldPostedBy = 'postedBy';
   static const fieldPhotos = 'photos';
+  static const fieldServiceType = 'serviceType';
 
   static final collection = db.collection(collectionName);
 

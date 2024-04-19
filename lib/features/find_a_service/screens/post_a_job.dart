@@ -182,6 +182,7 @@ class _PostJobScreenState extends State<PostJobScreen> {
     var state = _userCubit.state as AuthenticatedUser;
 
     jobRepository.addNewJob({
+      JobRepository.fieldServiceType: _serviceType.selected.id,
       JobRepository.fieldDescription: _descriptionoController.text,
       JobRepository.fieldLocation: _locationController.text,
       JobRepository.fieldPhotos: _photos,
