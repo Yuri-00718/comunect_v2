@@ -1,7 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:comunect_v2/app_theme.dart';
+import 'package:comunect_v2/common/widgets/bottom_navigation.dart';
 import 'package:comunect_v2/features/authentication/cubit/user_cubit.dart';
+import 'package:comunect_v2/features/find_a_service/repositories/service_type_repo.dart';
+import 'package:comunect_v2/features/find_a_service/models/service_type.dart';
+import 'package:comunect_v2/features/home/cubit/service_types_cubit.dart';
+import 'package:comunect_v2/routes/routes.dart';
 import 'package:comunect_v2/routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   AnimationController? animationController;
   bool multiple = true;
   late UserCubit _userCubit;
+  late ServiceTypesCubit _serviceTypeCubit;
 
   @override
   void initState() {
@@ -26,6 +32,17 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
     _userCubit = context.read<UserCubit>();
+    _serviceTypeCubit = context.read<ServiceTypesCubit>();
+    // loadInitialData();
+    loadServiceTypes();
+  }
+
+  void loadInitialData() async {
+    await ServiceTypeRepository.addInitialData();
+  }
+
+  void loadServiceTypes() async {
+    await _serviceTypeCubit.loadServiceTypes();
   }
 
   Future<bool> getData() async {
@@ -57,100 +74,75 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         },
         child: const Icon(Icons.logout),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Services'
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Locals'
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/job_seeker.png'),
-            label: 'Locals'
-          )
-        ],
-        onTap: (value) {
-          if (value == 0) { 
+      bottomNavigationBar: bottomNavigation(),
+      body: body(),
+    );
+  }
 
-          }
-        },
-      ),
-      body: FutureBuilder<bool>(
-        future: getData(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          if (!snapshot.hasData) {
-            return const SizedBox();
-          } else {
-            return Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  appBar(),
-                  Expanded(
-                    child: FutureBuilder<bool>(
-                      future: getData(),
-                      builder:
-                          (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                        if (!snapshot.hasData) {
-                          return const SizedBox();
-                        } else {
-                          return GridView(
-                            padding: const EdgeInsets.only(
-                                top: 0, left: 12, right: 12),
-                            physics: const BouncingScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: multiple ? 2 : 1,
-                              mainAxisSpacing: 12.0,
-                              crossAxisSpacing: 12.0,
-                              childAspectRatio: 1.5,
-                            ),
-                            children: List<Widget>.generate(
-                              homeList.length,
-                              (int index) {
-                                final int count = homeList.length;
-                                final Animation<double> animation =
-                                    Tween<double>(begin: 0.0, end: 1.0).animate(
-                                  CurvedAnimation(
-                                    parent: animationController!,
-                                    curve: Interval((1 / count) * index, 1.0,
-                                        curve: Curves.fastOutSlowIn),
-                                  ),
-                                );
-                                animationController?.forward();
-                                return HomeListView(
-                                  animation: animation,
-                                  animationController: animationController,
-                                  listData: homeList[index],
-                                  callBack: () {
-                                    Navigator.push<dynamic>(
-                                      context,
-                                      MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) =>
-                                            homeList[index].navigateScreen!,
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          );
-                        }
+  Widget body() {
+    return BlocBuilder<ServiceTypesCubit, ServiceTypesState>(
+      builder:(context, state) {
+        if (state is ServiceTypesLoading) {
+          return const Center(child: CircularProgressIndicator(),);
+        }
+
+        state = state as ServiceTypesLoaded;
+
+        List<ServiceType> serviceTypes = state.serviceTypes;
+
+        return Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                appBar(),
+                Expanded(
+                  child: GridView(
+                    padding: const EdgeInsets.only(
+                        top: 0, left: 12, right: 12),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    gridDelegate:
+                        SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: multiple ? 2 : 1,
+                      mainAxisSpacing: 12.0,
+                      crossAxisSpacing: 12.0,
+                      childAspectRatio: 1.5,
+                    ),
+                    children: List<Widget>.generate(
+                      serviceTypes.length,
+                      (int index) {
+                        final int count = serviceTypes.length;
+                        final Animation<double> animation =
+                            Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                            parent: animationController!,
+                            curve: Interval((1 / count) * index, 1.0,
+                                curve: Curves.fastOutSlowIn),
+                          ),
+                        );
+                        animationController?.forward();
+                        return HomeListView(
+                          animation: animation,
+                          animationController: animationController,
+                          listData: serviceTypes[index],
+                          callBack: () {
+                            _serviceTypeCubit.selectServiceType(index);
+                            Navigator.pushNamed(
+                              context,
+                              findAService
+                            );
+                          },
+                        );
                       },
                     ),
-                  ),
-                ],
-              ),
-            );
-          }
-        },
-      ),
+                  )
+                ),
+              ],
+            ),
+          );
+      }
     );
   }
 
@@ -217,12 +209,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 class HomeListView extends StatelessWidget {
   const HomeListView(
       {super.key,
-      this.listData,
+      required this.listData,
       this.callBack,
       this.animationController,
       this.animation});
 
-  final HomeList? listData;
+  final ServiceType listData;
   final VoidCallback? callBack;
   final AnimationController? animationController;
   final Animation<double>? animation;
@@ -245,12 +237,18 @@ class HomeListView extends StatelessWidget {
                   alignment: AlignmentDirectional.center,
                   children: <Widget>[
                     Positioned.fill(
-                      child: SizedBox(
+                      child: Container(
+                        color: Colors.white,
                         width: 90, // Set your desired width
                         height: 90, // Set your desired height
-                        child: Image.asset(
-                          listData!.imagePath,
-                          fit: BoxFit.fitWidth, // or BoxFit.fitHeight
+                        child: Row(
+                          children: [
+                            Image.network(
+                              '${listData.imageUrl}',
+                              fit: BoxFit.contain, // or BoxFit.fitHeight
+                            ),
+                            Text(listData.name)
+                          ],
                         ),
                       ),
                     ),

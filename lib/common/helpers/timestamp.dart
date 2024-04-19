@@ -1,5 +1,5 @@
 class Timestamp {
-  int? id;
+  String? id;
   String? createdAt;
   String? updatedAt;
 

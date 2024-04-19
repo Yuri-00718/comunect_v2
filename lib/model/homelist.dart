@@ -1,6 +1,3 @@
-import 'package:comunect_v2/Journal_app/feature-journal.dart';
-import 'package:comunect_v2/TaskMinder_App/feature-to-do-day-mode.dart';
-import 'package:comunect_v2/fitness_app/fitness_app_home_screen.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeList {
@@ -14,16 +11,13 @@ class HomeList {
 
   static List<HomeList> homeList = [
     HomeList(
-      imagePath: 'assets/Home-list-image/Journal-bg.png',
-      navigateScreen: const JournalAppHomeScreen(),
+      imagePath: 'assets/Home-list-image/serviceman_with_beard.png',
     ),
     HomeList(
       imagePath: 'assets/Home-list-image/Fitness-bg.png',
-      navigateScreen: const FitnessAppHomeScreen(),
     ),
     HomeList(
       imagePath: 'assets/Home-list-image/TaskMinder-bg.png',
-      navigateScreen: const TaskminderAppHomeScreen(),
     ),
   ];
 }

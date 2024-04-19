@@ -1,13 +1,16 @@
 import 'dart:io';
 import 'package:comunect_v2/app_theme.dart';
 import 'package:comunect_v2/features/authentication/cubit/user_cubit.dart';
+import 'package:comunect_v2/features/find_a_service/repositories/service_type_repo.dart';
 import 'package:comunect_v2/firebase_options.dart';
 import 'package:comunect_v2/routes/routes.dart';
 import 'package:comunect_v2/routes/routes_names.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
@@ -16,7 +19,18 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  if(!kDebugMode) {
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.playIntegrity,
+      appleProvider: AppleProvider.appAttest,
+      webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
+    );
+  } else {
+    await FirebaseAppCheck.instance.activate(
+      androidProvider: AndroidProvider.debug,
+      appleProvider: AppleProvider.debug,
+    );
+  }
   var userCubit = UserCubit();
 
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
