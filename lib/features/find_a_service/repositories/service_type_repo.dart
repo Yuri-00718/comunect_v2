@@ -16,10 +16,33 @@ class ServiceTypeRepository extends Repository{
   static String get collectionName => 'service_types';
 
   Future<void> addInitialData() async {
+    var result = await collection.limit(1).get();
+    if (result.docs.isNotEmpty) { return; }
+    
     final List<ServiceType> initialServiceType = [
       ServiceType(
         name: 'Fix', 
-        image: await getImageFileFromAsset('assets/Home-list-image/serviceman_with_beard.png'),
+        image: await getImageFileFromAsset('assets/Home-list-image/fix.png'),
+      ),
+      ServiceType(
+        name: 'Helper', 
+        image: await getImageFileFromAsset('assets/Home-list-image/helper.png'),
+      ),
+      ServiceType(
+        name: 'Constructor', 
+        image: await getImageFileFromAsset('assets/Home-list-image/constructor.png'),
+      ),
+      ServiceType(
+        name: 'Chef', 
+        image: await getImageFileFromAsset('assets/Home-list-image/chef.png'),
+      ),
+      ServiceType(
+        name: 'Chef', 
+        image: await getImageFileFromAsset('assets/Home-list-image/cleaner.png'),
+      ),
+      ServiceType(
+        name: 'Delivery', 
+        image: await getImageFileFromAsset('assets/Home-list-image/delivery.png'),
       )
     ];
 

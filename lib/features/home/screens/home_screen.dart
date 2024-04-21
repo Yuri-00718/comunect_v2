@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     super.initState();
     _userCubit = context.read<UserCubit>();
     _serviceTypeCubit = context.read<ServiceTypesCubit>();
-    // loadInitialData();
+    loadInitialData();
     loadServiceTypes();
   }
 

@@ -40,13 +40,15 @@ class _ServiceTypesScreenState extends State<ServiceTypesScreen> {
     );
   }
 
-  Column body() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Service Type'),
-        ...serviceTypes()
-      ],
+  Widget body() {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Service Type'),
+          ...serviceTypes()
+        ],
+      ),
     );
   }
 
