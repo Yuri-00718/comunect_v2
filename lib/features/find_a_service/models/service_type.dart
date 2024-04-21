@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:comunect_v2/common/helpers/timestamp.dart';
-import 'package:flutter/material.dart';
 
 class ServiceType extends Timestamp {
   String name;
@@ -21,7 +20,7 @@ class ServiceType extends Timestamp {
     if (isSavedInDatabase) {
       return {
         'name': name,
-        'image': imageUrl,
+        'imageUrl': imageUrl,
       };
     }
     return {
@@ -34,8 +33,10 @@ class ServiceType extends Timestamp {
 
   factory ServiceType.fromMap(Map<String, dynamic> map) {
     return ServiceType(
+      id: map['id'],
       name: map['name'] as String,
-      image: map['image'] as File,
+      image: map['image'],
+      imageUrl: map['imageUrl'],
     );
   }
 

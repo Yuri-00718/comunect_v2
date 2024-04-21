@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   void loadInitialData() async {
-    await ServiceTypeRepository.addInitialData();
+    await ServiceTypeRepository().addInitialData();
   }
 
   void loadServiceTypes() async {
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         },
         child: const Icon(Icons.logout),
       ),
-      bottomNavigationBar: bottomNavigation(),
+      bottomNavigationBar: bottomNavigation(context: context),
       body: body(),
     );
   }

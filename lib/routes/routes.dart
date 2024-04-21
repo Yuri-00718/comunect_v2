@@ -1,5 +1,9 @@
 import 'package:comunect_v2/features/authentication/screens/login_page.dart';
 import 'package:comunect_v2/features/authentication/screens/sign_up_page.dart';
+import 'package:comunect_v2/features/find_a_job/cubit/jobs_cubit.dart';
+import 'package:comunect_v2/features/find_a_job/screens/job_details.dart';
+import 'package:comunect_v2/features/find_a_job/screens/service_types.dart';
+import 'package:comunect_v2/features/find_a_job/screens/jobs.dart';
 import 'package:comunect_v2/features/find_a_service/screens/post_a_job.dart';
 import 'package:comunect_v2/features/home/cubit/service_types_cubit.dart';
 import 'package:comunect_v2/features/loading-screens/screens/splash_loading_screen.dart';
@@ -11,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRoutes {
   static final serviceTypesCubit = ServiceTypesCubit();
+  static final jobsCubit = JobsCubit();
 
   static MaterialPageRoute generateRoute(RouteSettings onGenerateRoutes) {
     switch (onGenerateRoutes.name) {
@@ -28,7 +33,7 @@ class AppRoutes {
         );
       case signin:
         return MaterialPageRoute(
-          builder: (context) => Login_Page(),
+          builder: (context) => const Login_Page(),
         );
       case homeScreen:
         return MaterialPageRoute(
@@ -44,6 +49,33 @@ class AppRoutes {
             child: const PostJobScreen(),
           ),
         );
+      case findAJob:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider.value(
+            value: serviceTypesCubit,
+            child: const ServiceTypesScreen(),
+          ),
+        ); 
+      case jobsList:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: jobsCubit),
+              BlocProvider.value(value: serviceTypesCubit),
+            ], 
+            child: const JobsScreen()
+          )
+        ); 
+      case jobDetails:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: jobsCubit),
+              BlocProvider.value(value: serviceTypesCubit),
+            ], 
+            child: const JobDetailsScreen()
+          )
+        ); 
       default:
         return MaterialPageRoute(
           builder: (context) => const Text('Invalid URL'),

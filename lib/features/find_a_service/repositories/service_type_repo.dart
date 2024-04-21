@@ -1,18 +1,21 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:comunect_v2/common/helpers/repository.dart';
 import 'package:comunect_v2/features/find_a_service/models/service_type.dart';
 import 'package:comunect_v2/features/find_a_service/utils/get_file_from_assests.dart';
 import 'package:comunect_v2/features/find_a_service/utils/upload_file.dart';
 import 'package:comunect_v2/utils/globals.dart';
 
-class ServiceTypeRepository {
+class ServiceTypeRepository extends Repository{
   static const String fieldName = 'name';
-  static const String fieldImage = 'image';
+  static const String fieldImage = 'imageUrl';
 
-  static final collection = db.collection(collectionName);
+  @override
+  CollectionReference get collection => db.collection(collectionName);
+  static String get collectionName => 'service_types';
 
-  static Future<void> addInitialData() async {
+  Future<void> addInitialData() async {
     final List<ServiceType> initialServiceType = [
       ServiceType(
         name: 'Fix', 
@@ -27,24 +30,6 @@ class ServiceTypeRepository {
     } 
   }
 
-  Future<List<QueryDocumentSnapshot<Object?>>> getList({
-    required Map<String, dynamic> filters,
-    int? limit
-  }) async {
-    var query = collection;
-    
-    filters.forEach((field, value) { 
-      query.where(field, isEqualTo: value);
-    });
-
-    if (limit != null) {
-      query.limit(limit);
-    }
-
-    QuerySnapshot snapshot = await query.get();
-    return snapshot.docs;
-  } 
-
   Future<List<ServiceType>> getObjectList({
     required Map<String, dynamic> filters,
     int? limit
@@ -57,15 +42,10 @@ class ServiceTypeRepository {
 
     for (int i = 0; i < result.length; ++i) {
       Map<String, dynamic> map = result[i].data() as Map<String, dynamic>;
-      types.add(ServiceType(
-        id: result[i].id,
-        name: map[fieldName], 
-        imageUrl: map[fieldImage]
-      ));
+      map['id'] = result[i].id;
+      types.add(ServiceType.fromMap(map));
     }
 
     return types;
   }
-
-  static String get collectionName => 'service_types';
 }

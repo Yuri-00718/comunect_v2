@@ -4,3 +4,6 @@ const String signup = '/sign-up';
 const String signin = '/sign-in';
 const String homeScreen = '/home-screen';
 const String findAService = '/find-a-service';
+const String findAJob = '/find-a-job';
+const String jobsList = '/jobs-list';
+const String jobDetails = '/job-details';

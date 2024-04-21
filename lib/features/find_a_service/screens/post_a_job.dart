@@ -33,7 +33,7 @@ class _PostJobScreenState extends State<PostJobScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Post a job'),),
-      bottomNavigationBar: bottomNavigation(),
+      bottomNavigationBar: bottomNavigation(context: context),
       body: body(),
     );
   }

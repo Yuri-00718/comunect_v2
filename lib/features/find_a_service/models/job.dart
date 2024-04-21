@@ -47,8 +47,8 @@ class Job extends Timestamp {
   factory Job.fromMap(Map<String, dynamic> map) {
     List<dynamic> list = jsonDecode(map['photosUrl'] ?? '[]');
     List<String> conList  = list.map((e) => e.toString(),).toList();
-
     return Job(
+      id: map['id'],
       serviceType: map['serviceType'] as String,
       description: map['description'] as String,
       photos: map['photos'] ?? [],
