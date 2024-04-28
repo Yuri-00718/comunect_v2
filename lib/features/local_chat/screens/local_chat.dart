@@ -165,10 +165,8 @@ class _LocalChatScreenState extends State<LocalChatScreen> {
   }
 
   void _goToBottom() {
-    _chatListController.animateTo(
+    _chatListController.jumpTo(
       _chatListController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 500), // Adjust duration as needed
-      curve: Curves.easeInOut, // Adjust curve as needed
     );
   }
 
