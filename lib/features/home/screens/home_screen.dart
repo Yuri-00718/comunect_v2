@@ -15,6 +15,7 @@ import 'package:comunect_v2/features/authentication/cubit/user_cubit.dart';
 import 'package:comunect_v2/features/find_a_service/repositories/service_type_repo.dart';
 import 'package:comunect_v2/features/find_a_service/models/service_type.dart';
 import 'package:comunect_v2/features/home/cubit/service_types_cubit.dart';
+import 'package:comunect_v2/features/home/utils/ask_permission_for_location_access.dart';
 import 'package:comunect_v2/routes/routes.dart';
 import 'package:comunect_v2/routes/routes_names.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     _serviceTypeCubit = context.read<ServiceTypesCubit>();
     loadInitialData();
     loadServiceTypes();
+    askPermissionForLocationAccess();
   }
 
   void loadInitialData() async {
@@ -53,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void loadServiceTypes() async {
     await _serviceTypeCubit.loadServiceTypes();
   }
+
 
   Future<bool> getData() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 0));

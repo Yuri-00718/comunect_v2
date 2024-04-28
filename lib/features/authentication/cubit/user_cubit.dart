@@ -1,3 +1,5 @@
+import 'package:comunect_v2/features/authentication/models/user.dart' as m_user;
+import 'package:comunect_v2/features/authentication/repositories/user_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -6,8 +8,9 @@ part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserLoading());
+  
   static final auth = FirebaseAuth.instance;
-
+  static final userRepo = UserRepository();
 
   Future<void> checkUserAuthenticationStatus() async {
     auth
@@ -25,12 +28,12 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> createNewUser(String email, String password, String username) async {
     try {
-      UserCredential credential = await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email, 
         password: password,
       );
-      await credential.user!.updateDisplayName(username);
       await auth.signOut();
+      await userRepo.insert(m_user.User(email: email, username: username));
       emit(UserIsCreated());
     } on FirebaseAuthException catch (e) {
       bool passwordIsWeak = false;

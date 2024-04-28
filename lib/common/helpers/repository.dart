@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 abstract class Repository {
   CollectionReference get collection => throw UnimplementedError();
   static String get collectionName => throw UnimplementedError();
@@ -20,5 +21,9 @@ abstract class Repository {
 
     QuerySnapshot snapshot = await query.get();
     return snapshot.docs;
+  }
+
+  Future<void> insert(model) async {
+    await collection.add(model.toMap(isSavedInDatabase: true));
   }
 }

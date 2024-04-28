@@ -7,3 +7,4 @@ const String findAService = '/find-a-service';
 const String findAJob = '/find-a-job';
 const String jobsList = '/jobs-list';
 const String jobDetails = '/job-details';
+const String localChat = '/local-chat';

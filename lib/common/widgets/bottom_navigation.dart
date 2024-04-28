@@ -1,4 +1,5 @@
 import 'package:comunect_v2/routes/routes_names.dart';
+import 'package:comunect_v2/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 BottomNavigationBar bottomNavigation({
@@ -28,6 +29,8 @@ BottomNavigationBar bottomNavigation({
         case 0:
           switchTabs(context, homeScreen);
           break;
+        case 1:
+          switchTabs(context, localChat);
         case 2:
           switchTabs(context, findAJob);
           break;

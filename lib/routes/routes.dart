@@ -7,6 +7,8 @@ import 'package:comunect_v2/features/find_a_job/screens/jobs.dart';
 import 'package:comunect_v2/features/find_a_service/screens/post_a_job.dart';
 import 'package:comunect_v2/features/home/cubit/service_types_cubit.dart';
 import 'package:comunect_v2/features/loading-screens/screens/splash_loading_screen.dart';
+import 'package:comunect_v2/features/local_chat/cubit/chat_cubit.dart';
+import 'package:comunect_v2/features/local_chat/screens/local_chat.dart';
 import 'package:comunect_v2/features/splash/screens/introduction_animation_screen.dart';
 import 'package:comunect_v2/features/home/screens/home_screen.dart';
 import 'package:comunect_v2/routes/routes_names.dart';
@@ -16,6 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppRoutes {
   static final serviceTypesCubit = ServiceTypesCubit();
   static final jobsCubit = JobsCubit();
+  static final chatCubit = ChatCubit();
 
   static MaterialPageRoute generateRoute(RouteSettings onGenerateRoutes) {
     switch (onGenerateRoutes.name) {
@@ -74,6 +77,15 @@ class AppRoutes {
               BlocProvider.value(value: serviceTypesCubit),
             ], 
             child: const JobDetailsScreen()
+          )
+        ); 
+      case localChat:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: chatCubit),
+            ], 
+            child: const LocalChatScreen()
           )
         ); 
       default:

@@ -50,6 +50,7 @@ class ServiceTypeRepository extends Repository{
       ServiceType type = initialServiceType[i];
       type.imageUrl = await uploadFile(type.image as File);
       await collection.add(type.toMap(isSavedInDatabase: true));
+      print(i);
     } 
   }
 
