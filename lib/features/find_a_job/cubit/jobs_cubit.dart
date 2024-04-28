@@ -11,6 +11,8 @@ class JobsCubit extends Cubit<JobsState> {
   static final jobRepository = JobRepository();
 
   Future<void> loadJobs(String serviceId) async {
+    emit(JobsLoading());
+    
     List<Job> jobs = await jobRepository.getObjectList(filters: {
       JobRepository.fieldServiceType: serviceId
     });

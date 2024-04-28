@@ -1,4 +1,13 @@
+/* 
+  Authored by: John Harold M. Beltran
+  Company:  Team John's + R 
+  Project: CommunityConnect
+  Feature: [COM - 002] Home Page
+  Description: The first screen that the user see after login and the list 
+  of services that are available.
+ */
 // ignore_for_file: use_build_context_synchronously
+
 
 import 'package:comunect_v2/app_theme.dart';
 import 'package:comunect_v2/common/widgets/bottom_navigation.dart';

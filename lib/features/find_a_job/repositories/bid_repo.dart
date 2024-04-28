@@ -10,7 +10,7 @@ class BidRepository extends Repository {
   static const String fieldBiddedJob = 'biddedJob';
 
   @override
-  CollectionReference get collection => db.collection(collectionName);
+  CollectionReference get collection => firestoreDb.collection(collectionName);
   static String get collectionName => 'bids';
 
   Future<void> makeABid(Map<String, dynamic> values) async {

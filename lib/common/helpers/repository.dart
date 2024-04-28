@@ -8,14 +8,14 @@ abstract class Repository {
     required Map<String, dynamic> filters,
     int? limit
   }) async {
-    var query = collection;
+    Query query = collection;
     
     filters.forEach((field, value) { 
-      query.where(field, isEqualTo: value);
+      query = query.where(field, isEqualTo: value);
     });
 
     if (limit != null) {
-      query.limit(limit);
+      query =  query.limit(limit);
     }
 
     QuerySnapshot snapshot = await query.get();

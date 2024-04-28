@@ -16,7 +16,7 @@ class JobRepository extends Repository {
   static const fieldServiceType = 'serviceType';
 
   @override
-  CollectionReference get collection => db.collection(collectionName);
+  CollectionReference get collection => firestoreDb.collection(collectionName);
 
   Future<void> addNewJob(Map<String, dynamic> values) async {
     Job newJob = Job.fromMap(values);

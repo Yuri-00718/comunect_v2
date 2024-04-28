@@ -12,7 +12,7 @@ class ServiceTypeRepository extends Repository{
   static const String fieldImage = 'imageUrl';
 
   @override
-  CollectionReference get collection => db.collection(collectionName);
+  CollectionReference get collection => firestoreDb.collection(collectionName);
   static String get collectionName => 'service_types';
 
   Future<void> addInitialData() async {

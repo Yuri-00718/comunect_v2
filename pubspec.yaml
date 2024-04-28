@@ -54,6 +54,8 @@ dependencies:
   multiple_images_picker: ^1.0.0-dev.1
   image_picker: ^1.1.0
   firebase_app_check: ^0.2.2+2
+  firebase_database: ^10.5.4
+  location: ^6.0.1
 
 dev_dependencies:
   flutter_test:
