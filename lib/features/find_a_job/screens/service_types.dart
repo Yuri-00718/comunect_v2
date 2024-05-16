@@ -16,7 +16,7 @@ class ServiceTypesScreen extends StatefulWidget {
 class _ServiceTypesScreenState extends State<ServiceTypesScreen> {
   late ServiceTypesCubit _serviceTypesCubit;
   late ServiceTypesLoaded _serviceTypeState;
-  
+
   @override
   void initState() {
     super.initState();
@@ -31,12 +31,23 @@ class _ServiceTypesScreenState extends State<ServiceTypesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Find a Job'),),
-      body: body(),
-      bottomNavigationBar: bottomNavigation(
-        activePage: jobsPage,
-        context: context
+      backgroundColor: const Color(0xFFF5EBE2),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF5EBE2),
+        title: const Text(
+          'Find a Job',
+          style: TextStyle(
+            fontSize: 28, // Increase font size
+          ),
+        ),
       ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: 16.0), // Add horizontal padding
+        child: body(),
+      ),
+      bottomNavigationBar:
+          bottomNavigation(activePage: jobsPage, context: context),
     );
   }
 
@@ -45,8 +56,14 @@ class _ServiceTypesScreenState extends State<ServiceTypesScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Service Type'),
-          ...serviceTypes()
+          const Text(
+            'Service Type',
+            style: TextStyle(
+              fontSize: 24, // Increase font size
+              fontWeight: FontWeight.bold, // Optionally make text bold
+            ),
+          ),
+          ...serviceTypes(),
         ],
       ),
     );
@@ -54,22 +71,25 @@ class _ServiceTypesScreenState extends State<ServiceTypesScreen> {
 
   List<Widget> serviceTypes() {
     List<ServiceType> serviceTypes = _serviceTypeState.serviceTypes;
-    return List.generate(
-      serviceTypes.length, 
-      (index) {
-        return GestureDetector(
-          onTap: () {
-            _serviceTypesCubit.selectServiceType(index);
-            Navigator.pushNamed(context, jobsList);
-          },
-          child: Row(
-            children: [
-              Image.network(serviceTypes[index].imageUrl as String),
-              Text(serviceTypes[index].name)
-            ],
-          ),
-        );
-      }
-    );
+    return List.generate(serviceTypes.length, (index) {
+      return GestureDetector(
+        onTap: () {
+          _serviceTypesCubit.selectServiceType(index);
+          Navigator.pushNamed(context, jobsList);
+        },
+        child: Row(
+          children: [
+            Image.network(serviceTypes[index].imageUrl as String),
+            const SizedBox(width: 8), // Add space between image and text
+            Text(
+              serviceTypes[index].name,
+              style: const TextStyle(
+                fontSize: 20, // Increase font size
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

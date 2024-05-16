@@ -13,6 +13,7 @@ class HomeDrawer extends StatefulWidget {
   final Function(DrawerIndex)? callBackIndex;
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeDrawerState createState() => _HomeDrawerState();
 }
 

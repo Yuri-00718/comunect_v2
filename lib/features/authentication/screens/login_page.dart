@@ -94,26 +94,26 @@ class _Login_PageState extends State<Login_Page> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 0 * fem, 28 * fem),
-                                padding: EdgeInsets.fromLTRB(
-                                    16 * fem, 13 * fem, 16 * fem, 12 * fem),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffc5bbbb),
-                                  borderRadius: BorderRadius.circular(15 * fem),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0x3f000000),
-                                      offset: Offset(0 * fem, 4 * fem),
-                                      blurRadius: 2 * fem,
-                                    ),
-                                  ],
-                                ),
-                                child: TextFormField(
-                                  controller: _emailController,
-                                )
-                              ),
+                                  margin: EdgeInsets.fromLTRB(
+                                      0 * fem, 0 * fem, 0 * fem, 28 * fem),
+                                  padding: EdgeInsets.fromLTRB(
+                                      16 * fem, 13 * fem, 16 * fem, 12 * fem),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xffc5bbbb),
+                                    borderRadius:
+                                        BorderRadius.circular(15 * fem),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: const Color(0x3f000000),
+                                        offset: Offset(0 * fem, 4 * fem),
+                                        blurRadius: 2 * fem,
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextFormField(
+                                    controller: _emailController,
+                                  )),
                               Container(
                                 margin: EdgeInsets.fromLTRB(
                                     0 * fem, 0 * fem, 0 * fem, 9 * fem),
@@ -129,25 +129,25 @@ class _Login_PageState extends State<Login_Page> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    16 * fem, 13 * fem, 16 * fem, 12 * fem),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffc5bbbb),
-                                  borderRadius: BorderRadius.circular(15 * fem),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0x3f000000),
-                                      offset: Offset(0 * fem, 4 * fem),
-                                      blurRadius: 2 * fem,
-                                    ),
-                                  ],
-                                ),
-                                child: TextFormField(
-                                  controller: _passwordController,
-                                  obscureText: true,
-                                )
-                              ),
+                                  padding: EdgeInsets.fromLTRB(
+                                      16 * fem, 13 * fem, 16 * fem, 12 * fem),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xffc5bbbb),
+                                    borderRadius:
+                                        BorderRadius.circular(15 * fem),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: const Color(0x3f000000),
+                                        offset: Offset(0 * fem, 4 * fem),
+                                        blurRadius: 2 * fem,
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextFormField(
+                                    controller: _passwordController,
+                                    obscureText: true,
+                                  )),
                             ],
                           ),
                         ),
@@ -238,11 +238,7 @@ class _Login_PageState extends State<Login_Page> {
     );
 
     if (_userCubit.state is AuthenticatedUser) {
-      Navigator.pushNamedAndRemoveUntil(
-        context, 
-        homeScreen, 
-        (route) => false
-      );
+      Navigator.pushNamedAndRemoveUntil(context, homeScreen, (route) => false);
     }
   }
 }

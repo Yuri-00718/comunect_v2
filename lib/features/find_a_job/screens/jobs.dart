@@ -11,8 +11,7 @@ class JobsScreen extends StatefulWidget {
   const JobsScreen({super.key});
 
   @override
-  State<JobsScreen> createState() =>
-      _JobsScreenState();
+  State<JobsScreen> createState() => _JobsScreenState();
 }
 
 class _JobsScreenState extends State<JobsScreen> {
@@ -36,11 +35,20 @@ class _JobsScreenState extends State<JobsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Available jobs')),
+      backgroundColor: const Color(0xFFF5EBE2),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF5EBE2),
+        title: const Text(
+          'Available jobs',
+          style: TextStyle(
+            fontSize: 24, // Increase font size
+          ),
+        ),
+      ),
       body: body(),
       bottomNavigationBar: bottomNavigation(
         context: context,
-        activePage: jobsPage
+        activePage: jobsPage,
       ),
     );
   }
@@ -49,35 +57,68 @@ class _JobsScreenState extends State<JobsScreen> {
     return BlocBuilder<JobsCubit, JobsState>(
       builder: (context, state) {
         if (state is JobsLoading) {
-          return const Center(child: CircularProgressIndicator(),);
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
 
         state = state as JobsLoaded;
         List<Job> jobs = state.jobs;
 
-        return ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(height: 10.0,),
-          itemCount: jobs.length,
-          itemBuilder: (context, index) {
+        return GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10.0,
+          mainAxisSpacing: 10.0,
+          padding: const EdgeInsets.all(10.0),
+          children: List.generate(jobs.length, (index) {
             String description = jobs[index].description;
-            String displayedDesc = description.length > 30 
-              ? "${description.substring(0, 30)}..."
-              : description;
-            
-            return ListTile(
+            String displayedDesc = description.length > 30
+                ? "${description.substring(0, 30)}..."
+                : description;
+
+            return GestureDetector(
               onTap: () {
                 _jobsCubit.selectJob(index);
                 Navigator.pushNamed(context, jobDetails);
               },
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(displayedDesc),
-                  Text(jobs[index].location)
-                ],
+              child: Container(
+                width: 150,
+                height: 150,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF5DEBD7), // Change color here
+                  borderRadius: BorderRadius.circular(8.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        displayedDesc,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        jobs[index].location,
+                        style: const TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             );
-          },
+          }),
         );
       },
     );
